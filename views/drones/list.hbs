@@ -2,4 +2,5 @@
 
 {{#each allDrones}}
     <p>The {{this.name}} has {{this.propellers}} propeller(s). It can go as fast as {{this.maxSpeed}} mph. </p> 
+    <a href="/drones/{{this._id}}/edit">Edit this drone</a>
 {{/each}}

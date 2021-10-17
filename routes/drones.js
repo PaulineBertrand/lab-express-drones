@@ -20,22 +20,29 @@ router.get('/drones/create', (req, res, next) => {
 
 router.post('/drones/create', (req, res, next) => {
   droneModel.create(req.body)
-  .then(() => res.redirect('/drones'))
-  .catch((err) => console.log("Error when creating a new drone: ", err))
+    .then(() => res.redirect('/drones'))
+    .catch((err) => console.log("Error when creating a new drone: ", err))
 });
 
 
-router.get('/drones/:id/edit', (req, res, next) => {
-  // Iteration #4: Update the drone
-  // ... your code here
+router.get('/drones/:id([a-z0-9]{24})/edit', (req, res, next) => {
+  const droneToUpdate = droneModel.findById(req.params.id)
+    .then((droneToUpdate) => {
+      res.render('drones/update-form.hbs', {droneToUpdate, title: "Update a drone", myCSS: "createForm.css"})
+    })
+    .catch((err) => console.log("Error when displaying the update form: ", err))
 });
 
-router.post('/drones/:id/edit', (req, res, next) => {
-  // Iteration #4: Update the drone
-  // ... your code here
+router.post('/drones/:id([a-z0-9]{24})/edit', (req, res, next) => {
+  const updatedDrone = droneModel.findByIdAndUpdate(req.params.id, req.body)
+    .then((updatedDrone) => {
+      console.log(req.body)
+      res.redirect('/drones');
+    })
+    .catch(() => res.render('drones/update-form.hbs', {title: "Update a drone", myCSS: "createForm.css"}))
 });
 
-router.post('/drones/:id/delete', (req, res, next) => {
+router.post('/drones/:id([a-z0-9]{24})/delete', (req, res, next) => {
   // Iteration #5: Delete the drone
   // ... your code here
 });
