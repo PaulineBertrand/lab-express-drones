@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.one-drone {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.button {
+    text-decoration: none;
+    margin: 5px 5px 5px 0;
+    padding: 2px;
+    font-size: 15px;
+    background-color: rgb(199, 199, 199);
+    border: 2px solid rgb(85, 85, 85);
+    border-radius: 3px;
+    color: black;
+    font-family: 'Xirod'
+}
+

@@ -35,16 +35,14 @@ router.get('/drones/:id([a-z0-9]{24})/edit', (req, res, next) => {
 
 router.post('/drones/:id([a-z0-9]{24})/edit', (req, res, next) => {
   const updatedDrone = droneModel.findByIdAndUpdate(req.params.id, req.body)
-    .then((updatedDrone) => {
-      console.log(req.body)
-      res.redirect('/drones');
-    })
+    .then((updatedDrone) => res.redirect('/drones'))
     .catch(() => res.render('drones/update-form.hbs', {title: "Update a drone", myCSS: "createForm.css"}))
 });
 
 router.post('/drones/:id([a-z0-9]{24})/delete', (req, res, next) => {
-  // Iteration #5: Delete the drone
-  // ... your code here
+  droneModel.findByIdAndDelete(req.params.id)
+    .then(() => res.redirect('/drones'))
+    .catch((err) => console.log("Error when deleting the drone: ", err))
 });
 
 module.exports = router;

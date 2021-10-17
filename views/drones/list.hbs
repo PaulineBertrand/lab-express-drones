@@ -1,6 +1,13 @@
 <h2>Available drones</h2>
 
 {{#each allDrones}}
-    <p>The {{this.name}} has {{this.propellers}} propeller(s). It can go as fast as {{this.maxSpeed}} mph. </p> 
-    <a href="/drones/{{this._id}}/edit">Edit this drone</a>
+    <div class="one-drone">
+        <p>The {{this.name}} has {{this.propellers}} propeller(s). It can go as fast as {{this.maxSpeed}} mph. </p> 
+        <div class="button-container">
+            <a class="button" href="/drones/{{this._id}}/edit">Edit</a>
+            <form action="/drones/{{this._id}}/delete" method="post"> 
+                <button class="button" >Delete</button> 
+            </form>
+        </div>
+    </div>
 {{/each}}
